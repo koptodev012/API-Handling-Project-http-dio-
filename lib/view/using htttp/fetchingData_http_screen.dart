@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:api_integration_flutter/model/user_model.dart';
+import 'package:api_integration_flutter/model/fetchData_user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

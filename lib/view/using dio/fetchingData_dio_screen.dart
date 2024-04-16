@@ -1,4 +1,4 @@
-import 'package:api_integration_flutter/model/user_model.dart';
+import 'package:api_integration_flutter/model/fetchData_user_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
