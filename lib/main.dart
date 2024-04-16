@@ -1,4 +1,4 @@
-import 'package:api_integration_flutter/view/using%20dio/addData_dio_screen.dart';
+import 'package:api_integration_flutter/view/using%20dio/updateData_dio_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,12 +13,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-       
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AddDataDio(),
+      home: const UpdateDataDio(),
     );
   }
 }
-
