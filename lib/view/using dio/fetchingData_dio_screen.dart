@@ -36,10 +36,19 @@ class _FetchingDataDioState extends State<FetchingDataDio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        title: const Text("Fetch user data - dio"),
-      ),
+        appBar: AppBar(
+          title: Text(
+            "Fetch user data - Dio",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: <Color>[Colors.purple, Colors.blue])),
+          )),
       body: FutureBuilder(
           future: getData(),
           builder: (context, snapshot) {

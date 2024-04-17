@@ -8,7 +8,6 @@ import 'package:api_integration_flutter/view/using%20htttp/fetchingData_http_scr
 import 'package:api_integration_flutter/view/using%20htttp/updateData_http_screen.dart';
 import 'package:flutter/material.dart';
 
-
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -27,10 +26,26 @@ class _DashboardState extends State<Dashboard> {
     // ==================================
 
     return Scaffold(
+      // appBar: AppBar(
+      //   title: const Text("Dashboard"),
+      //   backgroundColor: Colors.amber,
+      // ),
       appBar: AppBar(
-        title: const Text("Dashboard"),
-        backgroundColor: Colors.amber,
+        title: Text(
+          'Dashboard',
+          style: TextStyle(color: Colors.white),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.black, Colors.blue],
+            ),
+          ),
+        ),
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(
@@ -43,7 +58,10 @@ class _DashboardState extends State<Dashboard> {
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      color: Colors.red),
+                      color: Colors.black),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 ElevatedButton(
                     onPressed: () {
@@ -74,7 +92,10 @@ class _DashboardState extends State<Dashboard> {
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      color: Colors.red),
+                      color: Colors.black),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 ElevatedButton(
                     onPressed: () {

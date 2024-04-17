@@ -59,9 +59,18 @@ class _DeleteDataHttpState extends State<DeleteDataHttp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Delete user data - http"),
-        backgroundColor: Colors.blueAccent,
-      ),
+          title: Text(
+            "Delete user data - Http",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: <Color>[Colors.purple, Colors.blue])),
+          )),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(

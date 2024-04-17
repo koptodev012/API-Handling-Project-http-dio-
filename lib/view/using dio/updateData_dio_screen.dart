@@ -69,9 +69,18 @@ class _UpdateDataDioState extends State<UpdateDataDio> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Update user data - dio"),
-        backgroundColor: Colors.blue,
-      ),
+          title: Text(
+            "Update user data - Dio",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: <Color>[Colors.purple, Colors.blue])),
+          )),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(

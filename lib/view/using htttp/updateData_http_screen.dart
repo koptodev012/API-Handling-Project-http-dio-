@@ -76,10 +76,19 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
   Widget build(BuildContext context) {
     print(_number_tickets_total);
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Update user data - http"),
-        backgroundColor: Colors.blueAccent,
-      ),
+     appBar: AppBar(
+          title: Text(
+            "Update user data - Http",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: <Color>[Colors.purple, Colors.blue])),
+          )),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
