@@ -14,7 +14,7 @@ class _FetchingDataHttpState extends State<FetchingDataHttp> {
   // -------------------------------------------------------------
 
   List<UserModel> userData = [];
-
+  
   Future<List<UserModel>> getData() async {
     final response =
         await http.get(Uri.parse("https://jsonplaceholder.typicode.com/users"));

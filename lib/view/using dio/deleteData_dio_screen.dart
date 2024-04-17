@@ -12,6 +12,8 @@ class _DeleteDataDioState extends State<DeleteDataDio> {
   // -------------------------------------------------
 
   TextEditingController idController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  var _number_tickets_total;
 
   void DeleteData() async {
     try {
@@ -61,24 +63,38 @@ class _DeleteDataDioState extends State<DeleteDataDio> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: idController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Enter Id',
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              DropdownButton<int>(
+                  hint: Text("Select Id"),
+                  value: _number_tickets_total,
+                  items: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((int value) {
+                    return new DropdownMenuItem<int>(
+                      value: value,
+                      child: new Text(value.toString()),
+                    );
+                  }).toList(),
+                  onChanged: (val) {
+                    setState(() {
+                      _number_tickets_total = val!;
+                    });
+                  }),
+              SizedBox(
+                height: 20,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  DeleteData();
-                },
-                child: Text("Delete"))
-          ],
+              ElevatedButton(
+                  onPressed: () {
+                    if (_number_tickets_total == null) {
+                      print("Please select");
+                    } else {
+                      DeleteData();
+                    }
+                  },
+                  child: Text("Delete"))
+            ],
+          ),
         ),
       ),
     );

@@ -14,6 +14,7 @@ class _AddDataHttpState extends State<AddDataHttp> {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController jobController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   void AddData() async {
     try {
@@ -68,31 +69,46 @@ class _AddDataHttpState extends State<AddDataHttp> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Enter your name',
-              ),
-            ),
-            TextFormField(
-              controller: jobController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Enter your job',
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  AddData();
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: nameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Name is required";
+                  }
                 },
-                child: Text("SAVE"))
-          ],
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  labelText: 'Enter your name',
+                ),
+              ),
+              TextFormField(
+                controller: jobController,
+                 validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Job is required";
+                  }
+                },
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  labelText: 'Enter your job',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      AddData();
+                    }
+                  },
+                  child: Text("SAVE"))
+            ],
+          ),
         ),
       ),
     );

@@ -10,6 +10,7 @@ class UpdateDataDio extends StatefulWidget {
 
 class _UpdateDataDioState extends State<UpdateDataDio> {
   // -------------------------------------------------
+  final _formKey = GlobalKey<FormState>();
 
   TextEditingController firstnameController = TextEditingController();
   TextEditingController lastnameController = TextEditingController();
@@ -73,65 +74,89 @@ class _UpdateDataDioState extends State<UpdateDataDio> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // TextFormField(
-            //   controller: idController,
-            //   decoration: const InputDecoration(
-            //     border: UnderlineInputBorder(),
-            //     labelText: 'Id',
-            //   ),
-            // ),
-            DropdownButton<int>(
-                hint: Text("Select Id"),
-                value: _number_tickets_total,
-                items: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((int value) {
-                  return new DropdownMenuItem<int>(
-                    value: value,
-                    child: new Text(value.toString()),
-                  );
-                }).toList(),
-                onChanged: (val) {
-                  setState(() {
-                    _number_tickets_total = val!;
-                  });
-                }),
-            TextFormField(
-              controller: firstnameController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'First name',
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // TextFormField(
+              //   controller: idController,
+              //   decoration: const InputDecoration(
+              //     border: UnderlineInputBorder(),
+              //     labelText: 'Id',
+              //   ),
+              // ),
+              DropdownButton<int>(
+                  hint: Text("Select Id"),
+                  value: _number_tickets_total,
+                  items: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((int value) {
+                    return new DropdownMenuItem<int>(
+                      value: value,
+                      child: new Text(value.toString()),
+                    );
+                  }).toList(),
+                  onChanged: (val) {
+                    setState(() {
+                      _number_tickets_total = val!;
+                    });
+                  }),
+              TextFormField(
+                controller: firstnameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "First name is required";
+                  }
+                },
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  labelText: 'First name',
+                ),
               ),
-            ),
-            TextFormField(
-              controller: lastnameController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Last name',
+              TextFormField(
+                controller: lastnameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Last name is required";
+                  }
+                },
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  labelText: 'Last name',
+                ),
               ),
-            ),
-            TextFormField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Email',
+              TextFormField(
+                controller: emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Email name is required";
+                  }
+                },
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  labelText: 'Email',
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      UpdateData();
-                    },
-                    child: Text("Update")),
-              ],
-            )
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          if (_number_tickets_total == null) {
+                            print("Please select");
+                          } else {
+                            UpdateData();
+                          }
+                        }
+                      },
+                      child: Text("Update")),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
