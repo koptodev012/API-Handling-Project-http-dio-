@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -17,10 +19,12 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
   TextEditingController idController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
+  var _number_tickets_total;
+
   void UpdateData() async {
     try {
       Response response = await http.put(
-        Uri.parse("https://reqres.in/api/users/${idController.text}"),
+        Uri.parse("https://reqres.in/api/users/$_number_tickets_total"),
         body: {
           "email": emailController.text,
           "first_name": firstnameController.text,
@@ -29,14 +33,15 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
       );
 
       if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
         final snackBar = SnackBar(
-          content: const Text('Update!'),
+          content: Text("Updated at - ${data['updatedAt']}"),
           action: SnackBarAction(
             label: '',
             onPressed: () {},
           ),
         );
-        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
         idController.text = "";
         emailController.text = "";
@@ -51,7 +56,7 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
           onPressed: () {},
         ),
       );
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 
@@ -68,6 +73,7 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
   // =================================================
   @override
   Widget build(BuildContext context) {
+    print(_number_tickets_total);
     return Scaffold(
       appBar: AppBar(
         title: Text("Update user data - http"),
@@ -76,14 +82,29 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextFormField(
-              controller: idController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Id',
-              ),
-            ),
+            // TextFormField(
+            //   controller: idController,
+            //   decoration: const InputDecoration(
+            //     border: UnderlineInputBorder(),
+            //     labelText: 'Id',
+            //   ),
+            // ),
+            DropdownButton<int>(
+                hint: Text("Select Id"),
+                value: _number_tickets_total,
+                items: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((int value) {
+                  return new DropdownMenuItem<int>(
+                    value: value,
+                    child: new Text(value.toString()),
+                  );
+                }).toList(),
+                onChanged: (val) {
+                  setState(() {
+                    _number_tickets_total = val!;
+                  });
+                }),
             TextFormField(
               controller: firstnameController,
               decoration: const InputDecoration(
@@ -108,11 +129,16 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-                onPressed: () {
-                  UpdateData();
-                },
-                child: Text("Update"))
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      UpdateData();
+                    },
+                    child: Text("Update")),
+              ],
+            )
           ],
         ),
       ),

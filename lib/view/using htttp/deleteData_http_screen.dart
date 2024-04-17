@@ -13,11 +13,12 @@ class _DeleteDataHttpState extends State<DeleteDataHttp> {
   // -------------------------------------------------
 
   TextEditingController idController = TextEditingController();
+  var _number_tickets_total;
 
   void DeleteData() async {
     try {
       Response response = await http.delete(
-        Uri.parse("https://reqres.in/api/users/${idController.text}"),
+        Uri.parse("https://reqres.in/api/users/$_number_tickets_total"),
       );
 
       if (response.statusCode == 204) {
@@ -63,13 +64,20 @@ class _DeleteDataHttpState extends State<DeleteDataHttp> {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            TextFormField(
-              controller: idController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Enter Id',
-              ),
-            ),
+            DropdownButton<int>(
+                hint: Text("Select Id"),
+                value: _number_tickets_total,
+                items: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((int value) {
+                  return new DropdownMenuItem<int>(
+                    value: value,
+                    child: new Text(value.toString()),
+                  );
+                }).toList(),
+                onChanged: (val) {
+                  setState(() {
+                    _number_tickets_total = val!;
+                  });
+                }),
             SizedBox(
               height: 20,
             ),
