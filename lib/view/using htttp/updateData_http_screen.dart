@@ -36,7 +36,7 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
             onPressed: () {},
           ),
         );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
         idController.text = "";
         emailController.text = "";
@@ -51,7 +51,7 @@ class _UpdateDataHttpState extends State<UpdateDataHttp> {
           onPressed: () {},
         ),
       );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 

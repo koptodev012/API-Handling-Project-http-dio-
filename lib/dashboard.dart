@@ -28,93 +28,74 @@ class _DashboardState extends State<Dashboard> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dashboard"),
+        title: const Text("Dashboard"),
         backgroundColor: Colors.amber,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
-                Text(
+                const Text(
                   "API - Http",
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.red),
                 ),
-                Text(
+                ElevatedButton(
+                    onPressed: () {
+                      nav(const AddDataHttp());
+                    },
+                    child: const Text("ADD")),
+                ElevatedButton(
+                    onPressed: () {
+                      nav(const UpdateDataHttp());
+                    },
+                    child: const Text("UPDATE")),
+                ElevatedButton(
+                    onPressed: () {
+                      nav(const DeleteDataHttp());
+                    },
+                    child: const Text("DELETE")),
+                ElevatedButton(
+                    onPressed: () {
+                      nav(const FetchingDataHttp());
+                    },
+                    child: const Text("FETCH")),
+              ],
+            ),
+            Column(
+              children: [
+                const Text(
                   "API - Dio",
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.red),
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
                 ElevatedButton(
                     onPressed: () {
-                      nav(AddDataHttp());
+                      nav(const AddDataDio());
                     },
-                    child: Text("ADD")),
+                    child: const Text("ADD")),
                 ElevatedButton(
                     onPressed: () {
-                      nav(AddDataDio());
+                      nav(const UpdateDataDio());
                     },
-                    child: Text("ADD"))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+                    child: const Text("UPDATE")),
                 ElevatedButton(
                     onPressed: () {
-                      nav(UpdateDataHttp());
+                      nav(const DeleteDataDio());
                     },
-                    child: Text("UPDATE")),
+                    child: const Text("DELETE")),
                 ElevatedButton(
                     onPressed: () {
-                      nav(UpdateDataDio());
+                      nav(const FetchingDataDio());
                     },
-                    child: Text("UPDATE"))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      nav(DeleteDataHttp());
-                    },
-                    child: Text("DELETE")),
-                ElevatedButton(
-                    onPressed: () {
-                      nav(DeleteDataDio());
-                    },
-                    child: Text("DELETE"))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      nav(FetchingDataHttp());
-                    },
-                    child: Text("FETCH")),
-                ElevatedButton(
-                    onPressed: () {
-                      nav(FetchingDataDio());
-                    },
-                    child: Text("FETCH"))
+                    child: const Text("FETCH"))
               ],
             )
           ],
