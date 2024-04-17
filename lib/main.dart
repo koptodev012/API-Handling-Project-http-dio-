@@ -1,4 +1,4 @@
-import 'package:api_integration_flutter/view/using%20dio/deleteData_dio_screen.dart';
+import 'package:api_integration_flutter/dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const DeleteDataDio(),
+      home: const Dashboard(),
     );
   }
 }
